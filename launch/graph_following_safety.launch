@@ -1,0 +1,11 @@
+<launch>
+  <node respawn="true" pkg="graph_following_safety" type="graph_following_safety_node" name="graph_following_safety" output="screen">
+    <param name="max_distance_since_graph_localization_meters" value="20"/>
+    <param name="slow_distance_since_graph_localization_meters" value="1.0"/>
+    <param name="slow_speed_meters_per_second" value="0.25"/>
+    <param name="search_mode_timeout_seconds" value="3600"/>
+    <remap from="/graph_following_safety/in/keyframe_navigation_status" to="/IcpNavigation/map/out/status"/>
+    <remap from="/graph_following_safety/in/graph_status" to="/IcpNavigation/map/graphnav/out/status"/>
+    <remap from="/graph_following_safety/in/path_tracker_status" to="/path_tracker/base/out/state"/>
+  </node>
+</launch>

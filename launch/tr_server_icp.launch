@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+  <arg name="launch_visualizations" default="true"/>
+  <arg name="calibration_file" default="$(find starleth_tr_launch)/conf/calibration.yaml"/>
+  <arg name="use_deadman" default="false"/>
+  <arg name="start_initialized" default="false"/>
+  <arg name="running_offline" default="false"/>
+
+  <!-- ===================================================== -->
+  <!-- This is the core ICP Navigation server software: -->
+  <!-- ICP Navigation -->
+  <include file="$(find starleth_tr_launch)/launch/icp_navigation.launch">
+    <arg name="start_initialized" value="$(arg start_initialized)"/>
+    <arg name="running_offline" value="$(arg running_offline)"/>
+  </include>
+
+  <!-- The inter-sensor transformations -->
+  <include file="$(find starleth_tr_launch)/launch/publish_calibration.launch">
+    <arg name="calibration_file" value="$(arg calibration_file)"/>
+  </include>  
+  
+  <!-- The path massager that takes paths emitted by ICP Navigation
+       and sends them to the path tracker -->
+  <node pkg="asrl_graph_navigation" type="following_path_massager" name="path_massager">
+    <remap from="~in/path" to="/IcpNavigation/map/graphnav/out/following_path"/>
+  </node>
+
+  <!-- The graph following safety layer that listens for failures and
+       stops ICP Navigation if it is unable to localize -->
+  <include file="$(find starleth_tr_launch)/launch/graph_following_safety.launch"/>
+
+  <!-- The path tracker -->
+  <include file="$(find starleth_tr_launch)/launch/path_tracker.launch">
+    <arg name="use_deadman" value="$(arg use_deadman)"/>
+  </include>
+  
+  <!-- ===================================================== -->
+  <!-- ==============  Optional Components  ================ --> 
+
+  <!-- Launch the robot and gamepad -->
+<!--  <group if="$(arg launch_robot)">  -->
+<!--    <include file="$(find mesr_launch)/launch/robot.launch" >-->
+<!--      <arg name="gamepad_device" value="$(arg gamepad_device)"/>-->
+<!--      <arg name="linear_to_angular_ratio" default="$(arg linear_to_angular_ratio)"/>-->
+<!--    </include>-->
+<!--  </group>-->
+
+  <!-- Launch the camera -->
+<!--  <group if="$(arg launch_camera)">-->
+<!--    <include file="$(find mesr_launch)/launch/camera.launch">-->
+<!--      <arg name="use_utias_camera" value="$(arg use_utias_camera)"/>    -->
+<!--    </include>-->
+<!--  </group>-->
+
+  <!-- Launch the visualizations -->
+  <group if="$(arg launch_visualizations)">
+    <include file="$(find starleth_tr_launch)/launch/visualizations.launch"/>
+  </group>
+
+</launch>

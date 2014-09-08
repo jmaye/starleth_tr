@@ -1,0 +1,16 @@
+<package>
+  <description brief="starleth_tr_launch">
+     starleth_tr_launch
+  </description>
+  <author>Jerome Maye</author>
+  <license>LGPL</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://github.com/jmaye/starleth_tr_launch</url>
+  <depend package="asrl_icp_pipeline"/>
+  <depend package="tf_gui"/>
+<!--  Optional-->
+  <depend package="path_tracker"/>
+  <depend package="path_tracker_nominal"/>
+  <depend package="graph_following_safety"/>
+  <depend package="local_planning_ros"/>
+</package>

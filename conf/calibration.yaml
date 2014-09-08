@@ -1,0 +1,12 @@
+T_s_c: {frame_id_prefix: '', from_frame_id: x, inv_from_frame_id: /camera, inv_to_frame_id: /sun_sensor,
+  pitch_angle: 0.0011, publish_frame_transformation: false, publish_inv_frame_transformation: true,
+  publish_period_ms: 100.0, roll_angle: -1.9123, to_frame_id: x, x_off: 0.161, y_off: 0.137,
+  yaw_angle: -1.5675, z_off: -0.117}
+T_s_g: {frame_id_prefix: '', from_frame_id: /inclinometer, inv_from_frame_id: x, inv_to_frame_id: x,
+  pitch_angle: -0.0439, publish_frame_transformation: true, publish_inv_frame_transformation: false,
+  publish_period_ms: 100.0, roll_angle: -0.0189, to_frame_id: /sun_sensor, x_off: 0.017,
+  y_off: -0.148, yaw_angle: 0.0088, z_off: -0.022}
+T_v_c: {frame_id_prefix: '', from_frame_id: /camera, inv_from_frame_id: path, inv_to_frame_id: /path_base_link,
+  pitch_angle: -0.013, publish_frame_transformation: true, publish_inv_frame_transformation: true,
+  publish_period_ms: 100.0, roll_angle: 0.013, to_frame_id: /vehicle_base_link, x_off: -0.022,
+  y_off: 0.0, yaw_angle: 2.356, z_off: 1.35}

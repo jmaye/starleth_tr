@@ -1,0 +1,33 @@
+<launch>
+  <arg name="use_deadman" default="true"/>
+
+  <!-- Path tracker -->
+  <node respawn="false" pkg="path_tracker_nominal" type="path_tracker_nominal_node" name="path_tracker">
+
+    <!-- Deadman toggle -->
+    <param name="base/is_deadman_on" type="bool" value="$(arg use_deadman)"/>
+
+    <!-- Pathtracker gains -->
+    <param name="root_config_file_folder" type="string" value="$(find starleth_tr_launch)/conf"/>
+    <param name="config_file_folder" type="string" value="path_tracker_gains"/>
+    
+    <!-- Controller outerloop rate -->
+    <param name="base/control_loop_period_seconds" type="double" value="0.1"/>
+    <param name="base/localization_timeout_seconds" type="double" value="10.0"/>
+
+    <!-- Performance knobs -->
+    <param name="path_end_offset" value="0.15"/>
+    <param name="interpolate_heading_error" value="true"/>
+    
+    <!-- Speed profiling parameters -->
+    <!-- Demo -->
+    <param name="start_end_buffer_distance" value="2.0"/>
+    <param name="averaging_window_meters" value="4"/>
+    <param name="slow_down_distance" value="2"/>
+    <param name="save_speed_profile" value="false"/>
+    
+    <!-- Remaping -->
+    <remap from="/path_tracker/joy" to="joy"/>
+    <remap from="/path_tracker/base/out/twist" to="vehicle/in/twist"/>
+  </node>
+</launch>
