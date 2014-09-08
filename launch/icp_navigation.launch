@@ -24,7 +24,7 @@
     <param name="map/graphnav/map_match_interval" value="1"/>
 
     <!-- IcpNavigation -->
-    <remap from="/IcpNavigation/cloud_in" to="/velodyne/assembled_cloud2"/>
+    <remap from="/IcpNavigation/cloud_in" to="/velodyne_post/point_cloud"/>
     <remap from="/IcpNavigation/imu" to="/imu/data"/>
     <remap from="/IcpNavigation/gps" to="/gps/fix"/>
     <param name="map/icp_config" value="$(find asrl_icp_navigation)/launch/icp.yaml"/>
@@ -53,18 +53,28 @@
     <param name="map/maxDistNewPoint" value="0.3"/>
     <param name="map/maxSensorRange" value="100.0"/>
     <param name="map/nPriorSubmapsToUpdate" value="5"/>
-    <param name="map/removeDynamicPoints" value="true"/>
+    <param name="map/removeDynamicPoints" value="false"/>
     <param name="map/dynamicThreshold" value="0.4"/>
 
     <!-- updating submaps in repeat phase -->
-    <param name="map/updateMapsInRepeat" value="true"/>
+    <param name="map/updateMapsInRepeat" value="false"/>
 
     <!-- add gravity information from IMU -->
-    <param name="map/addImuGravity" value="true"/>
+    <param name="map/addImuGravity" value="false"/>
 
     <!-- frame id parameters -->
     <param name="/map/odomFrameId" value="/odom"/>
-    <param name="/map/sensorFrameId" value="/velodyne"/>
+    <param name="/map/sensorFrameId" value="/velodyne_link"/>
     <param name="/map/inertialFrameId" value="/inertial"/>
   </node>
+
+  <!-- Velodyne data post-processing -->
+  <include file="$(find velodyne_post)/launch/velodyne32_post.launch"/>
+
+  <!-- Connect odometry to Velodyne -->
+  <node pkg="tf" type="static_transform_publisher" name="odom_dummy_publisher" args="0 0 0 0 0 0 /velodyne_link /odom 30"/>
+
+  <!-- Connect camera to Velodyne -->
+  <node pkg="tf" type="static_transform_publisher" name="tf_connector" args="0 0 0 0 0 0 /camera /velodyne_link 30"/>
+
 </launch>

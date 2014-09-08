@@ -1,4 +1,10 @@
-starleth_tr_launch (0.1-1) trusty; urgency=low
+starleth-tr-launch (0.1-2) trusty; urgency=low
+
+  * Adding more dependencies.
+
+ -- Jerome Maye <jmaye@starleth-hlpc>  Mon, 08 Sep 2014 18:10:28 +0200
+
+starleth-tr-launch (0.1-1) trusty; urgency=low
 
   * First draft.
 

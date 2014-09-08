@@ -102,7 +102,7 @@ Visualization Manager:
       Size (Pixels): 3
       Size (m): 0.05
       Style: Flat Squares
-      Topic: /velodyne/assembled_cloud2
+      Topic: /velodyne_post/point_cloud
       Use Fixed Frame: true
       Use rainbow: true
       Value: false
