@@ -6,7 +6,7 @@
 
   <group if="$(arg start_initialized)">
     <param name="IcpNavigation/map/pose_graph_initialization_behaviour" value="CreateNewTimestamped"/>
-    <param name="IcpNavigation/map/pose_graph_path" value="$(find starleth_tr_launch)/pose_graphs"/>
+    <param name="IcpNavigation/map/pose_graph_path" value="$(find starleth_tr)/pose_graphs"/>
   </group>
   <group unless="$(arg start_initialized)">
     <param name="IcpNavigation/map/pose_graph_initialization_behaviour" value="DoNothing"/>

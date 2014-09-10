@@ -1,5 +1,5 @@
 <launch>
-  <arg name="calibration_file" default="$(find starleth_tr_launch)/conf/calibration.yaml"/>
+  <arg name="calibration_file" default="$(find starleth_tr)/conf/calibration.yaml"/>
 
   <group ns="calibration">
     <rosparam command="load" file="$(arg calibration_file)"/>
