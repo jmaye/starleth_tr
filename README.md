@@ -1,4 +1,4 @@
-starleth_tr_launch
+starleth_tr
 ================================
 
-A collection of ROS launch scripts for starting the T&R framework on the StarlETH robot.
+Port of the ICP T&R framework on the StarlETH robot.

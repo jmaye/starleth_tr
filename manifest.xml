@@ -1,11 +1,11 @@
 <package>
-  <description brief="starleth_tr_launch">
-     starleth_tr_launch
+  <description brief="starleth_tr">
+     starleth_tr
   </description>
   <author>Jerome Maye</author>
   <license>LGPL</license>
   <review status="unreviewed" notes=""/>
-  <url>http://github.com/jmaye/starleth_tr_launch</url>
+  <url>http://github.com/jmaye/starleth_tr</url>
   <depend package="asrl_icp_pipeline"/>
   <depend package="icp_interface"/>
   <depend package="tf_gui"/>

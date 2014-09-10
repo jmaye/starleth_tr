@@ -2,7 +2,7 @@
 \mainpage
 \htmlinclude manifest.html
 
-\b starleth_tr_launch contains launch files for the T&R framework on StarlETH.
+\b starleth_tr is the port of the ICP T&R framework on StarlETH.
 
 <!-- 
 Provide an overview of your package.
