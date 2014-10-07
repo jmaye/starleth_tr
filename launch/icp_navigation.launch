@@ -17,8 +17,8 @@
     <param name="map/graphnav/use_local_time_for_update_time" value="$(arg running_offline)"/>
 
     <!-- GraphNavigation -->
-    <param name="map/graphnav/min_rotation_to_add_vertex" value="10"/>
-    <param name="map/graphnav/min_translation_to_add_vertex" value="1.0"/>
+    <param name="map/graphnav/min_rotation_to_add_vertex" value="10"/> <!-- default: 10 -->
+    <param name="map/graphnav/min_translation_to_add_vertex" value="1.0"/> <!-- default: 1.0 -->
     <param name="map/graphnav/publish_status_every_n_seconds" value="0.05"/>
     <param name="map/graphnav/topological_search_radius" value="7"/>
     <param name="map/graphnav/map_match_interval" value="1"/>
@@ -31,15 +31,15 @@
     <param name="map/input_Filter_Config" value="$(find asrl_icp_navigation)/launch/input_filter.yaml"/>
     <param name="map/map_Post_Filter_Config" value="$(find asrl_icp_navigation)/launch/map_post_filter.yaml"/>
     <param name="map/increment_map_Post_Filter_Config" value="$(find asrl_icp_navigation)/launch/increment_map_post_filter.yaml"/>
-    <param name="map/min_Point_Count" value="1000"/>
+    <param name="map/min_Point_Count" value="1000"/> <!-- default: 1000 -->
     <param name="map/min_Map_Point_Count" value="10000"/>
     <param name="map/max_overlap_to_add_to_map" value="0.9"/>
     <param name="map/point_cloud_frequency" value="10"/>
     <param name="map/debug" value="false"/>
     <param name="map/debug_file_output" value="false"/>
     <param name="map/debug_file_output_path" value="$(find asrl_icp_navigation)/debug_output/"/>
-    <param name="map/new_laser_node_distance_threshold" value="10"/>
-    <param name="map/new_laser_node_overlap_threshold" value="0.84"/>
+    <param name="map/new_laser_node_distance_threshold" value="9999"/> <!-- default: 10 -->
+    <param name="map/new_laser_node_overlap_threshold" value="0.00"/> <!-- default: 0.84 -->
 
     <!-- dynamic elements segmentaton -->
     <param name="map/priorStatic" value="0.8"/>
