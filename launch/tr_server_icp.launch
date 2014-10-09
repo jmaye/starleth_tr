@@ -30,9 +30,23 @@
   <include file="$(find starleth_tr)/launch/graph_following_safety.launch"/>
 
   <!-- The path tracker -->
-  <include file="$(find starleth_tr)/launch/path_tracker.launch">
-    <arg name="use_deadman" value="$(arg use_deadman)"/>
+  <!-- <include file="$(find starleth_tr)/launch/path_tracker.launch"> -->
+  <!--   <arg name="use_deadman" value="$(arg use_deadman)"/> -->
+  <!-- </include> -->
+  <include file="$(find local_planning_ros)/launch/local_planner_starleth.launch">
+    <arg name="world_frame_id" value="1"/>
   </include>
+
+  <!-- transforms the reference path provided by the ICP T&R to a standard nav_msgs::Path -->
+  <node pkg="teach_repeat_launch" type="global_path_transformer" name="reference_path_transformer" respawn="true">
+    <remap from="tnr_reference_path" to="/IcpNavigation/map/graphnav/out/following_path"/>
+  </node>
+
+  <!-- publish a test map -->
+  <node pkg="local_planning_ros" type="test_map_publisher" name="test_map_publisher" output="screen" respawn="false">
+    <param name="vehicle_frame_id" value="/vehicle_base_link" />
+    <param name="map_cell_size" value="0.1" />
+  </node>
   
   <!-- ===================================================== -->
   <!-- ==============  Optional Components  ================ --> 
