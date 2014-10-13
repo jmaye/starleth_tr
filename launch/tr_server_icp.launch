@@ -49,9 +49,9 @@
   </node>
 
   <!-- publish a test odometry -->
-  <node pkg="local_planning_ros" type="test_odometry_publisher" name="test_odometry_publisher" output="screen" respawn="false">
-  </node>
+  <node pkg="local_planning_ros" type="test_odometry_publisher" name="test_odometry_publisher" output="screen" respawn="false"/>
   
+
   <!-- ===================================================== -->
   <!-- ==============  Optional Components  ================ --> 
 
