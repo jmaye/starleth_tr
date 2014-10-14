@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <launch>
   <arg name="launch_visualizations" default="true"/>
-  <arg name="calibration_file" default="$(find starleth_tr)/conf/calibration.yaml"/>
   <arg name="start_initialized" default="false"/>
   <arg name="running_offline" default="false"/>
 
@@ -13,11 +12,6 @@
     <arg name="running_offline" value="$(arg running_offline)"/>
   </include>
 
-  <!-- The inter-sensor transformations -->
-  <!-- <include file="$(find starleth_tr)/launch/publish_calibration.launch">
-    <arg name="calibration_file" value="$(arg calibration_file)"/>
-  </include> -->
-  
   <!-- The path massager that takes paths emitted by ICP Navigation and sends them to the path tracker -->
   <!-- T<node pkg="asrl_graph_navigation" type="following_path_massager" name="path_massager">
     <remap from="~in/path" to="/IcpNavigation/map/graphnav/out/following_path"/>
@@ -37,7 +31,7 @@
 
   <!-- publish a test map -->
   <node pkg="local_planning_ros" type="test_map_publisher" name="test_map_publisher" output="screen" respawn="false">
-    <param name="vehicle_frame_id" value="/base" />
+    <param name="vehicle_frame_id" value="base" />
     <param name="map_cell_size" value="0.1" />
   </node>
   
