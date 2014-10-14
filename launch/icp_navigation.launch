@@ -64,21 +64,12 @@
     <param name="map/addImuGravity" value="false"/>
 
     <!-- frame id parameters -->
-    <param name="/map/odomFrameId" value="/odom"/>
+    <param name="/map/odomFrameId" value="/odometry"/>
     <param name="/map/sensorFrameId" value="/velodyne_link"/>
     <param name="/map/inertialFrameId" value="/inertial"/>
   </node>
 
   <!-- Velodyne data post-processing -->
   <include file="$(find velodyne_post)/launch/velodyne32_post.launch"/>
-  
-  <!-- Velodyne tf publisher -->
-  <node pkg="tf" type="static_transform_publisher" name="velodyne_tf_publisher" args="0 0 0.25 0 0 0 1 base velodyne_link 30" />
-
-  <!-- Connect odometry to Velodyne -->
-  <node pkg="tf" type="static_transform_publisher" name="odom_dummy_publisher" args="0 0 0 0 0 0 /velodyne_link /odom 30"/>
-
-  <!-- Connect kinect to Velodyne -->
-  <node pkg="tf" type="static_transform_publisher" name="tf_connector" args="0 0 -0.2 0 0 0 /camera_link /velodyne_link 30"/>
 
 </launch>
