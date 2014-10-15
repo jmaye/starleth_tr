@@ -3,7 +3,7 @@
   <arg name="launch_rqtools" default="true"/>
 
   <group if="$(arg launch_rqtools)">
-    <node pkg="rqt_console" type="rqt_console" name="rqt_console"/>
+    <!--<node pkg="rqt_console" type="rqt_console" name="rqt_console"/> -->
     <node pkg="rviz" type="rviz" name="rviz" 
           args="--fixed-frame topocentric -d $(find starleth_tr)/conf/icp_nav.rviz"/>
     <!--node pkg="dynamic_reconfigure" type="reconfigure_gui" name="reconfigure_gui" / -->

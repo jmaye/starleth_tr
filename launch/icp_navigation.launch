@@ -17,6 +17,8 @@
     <param name="map/graphnav/use_local_time_for_update_time" value="$(arg running_offline)"/>
 
     <!-- GraphNavigation -->
+    <param name="map/graphnav/sensor_frame_id" value="velodyne_link"/>
+    <param name="map/graphnav/vehicle_frame_id" value="base"/>
     <param name="map/graphnav/min_rotation_to_add_vertex" value="10"/> <!-- default: 10 -->
     <param name="map/graphnav/min_translation_to_add_vertex" value="1.0"/> <!-- default: 1.0 -->
     <param name="map/graphnav/publish_status_every_n_seconds" value="0.05"/>
@@ -24,10 +26,10 @@
     <param name="map/graphnav/map_match_interval" value="1"/>
 
     <!-- IcpNavigation -->
-    <remap from="/IcpNavigation/cloud_in" to="/velodyne_post/point_cloud"/>
+    <remap from="IcpNavigation/cloud_in" to="velodyne_post/point_cloud"/>
     <!-- <remap from="/IcpNavigation/cloud_in" to="/camera/depth_registered/points"/> -->
-    <remap from="/IcpNavigation/imu" to="/imu/data"/>
-    <remap from="/IcpNavigation/gps" to="/gps/fix"/>
+    <remap from="IcpNavigation/imu" to="starleth/robot_state/imu"/>
+    <!-- <remap from="/IcpNavigation/gps" to="/gps/fix"/> -->
     <param name="map/icp_config" value="$(find asrl_icp_navigation)/launch/icp.yaml"/>
     <param name="map/input_Filter_Config" value="$(find asrl_icp_navigation)/launch/input_filter.yaml"/>
     <param name="map/map_Post_Filter_Config" value="$(find asrl_icp_navigation)/launch/map_post_filter.yaml"/>
@@ -64,9 +66,9 @@
     <param name="map/addImuGravity" value="false"/>
 
     <!-- frame id parameters -->
-    <param name="/map/odomFrameId" value="/odometry"/>
-    <param name="/map/sensorFrameId" value="/velodyne_link"/>
-    <param name="/map/inertialFrameId" value="/topocentric"/>
+    <param name="map/odomFrameId" value="starleth/odometry"/>
+    <param name="map/sensorFrameId" value="velodyne_link"/>
+    <param name="map/inertialFrameId" value="inertial"/>
   </node>
 
   <!-- Velodyne data post-processing -->

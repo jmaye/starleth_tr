@@ -8,8 +8,10 @@ Panels:
         - /Status1
         - /Current Submap1
         - /Current Scan1
+        - /Pose Graph1
+        - /TF1
       Splitter Ratio: 0.519031
-    Tree Height: 612
+    Tree Height: 615
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -28,7 +30,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: Current Submap
+    SyncSource: ""
 Visualization Manager:
   Class: ""
   Displays:
@@ -47,7 +49,7 @@ Visualization Manager:
         Y: 0
         Z: 0
       Plane: XY
-      Plane Cell Count: 10
+      Plane Cell Count: 1000
       Reference Frame: <Fixed Frame>
       Value: true
     - Alpha: 1
@@ -63,6 +65,7 @@ Visualization Manager:
       Color Transformer: Intensity
       Decay Time: 0
       Enabled: true
+      Invert Rainbow: false
       Max Color: 255; 255; 255
       Max Intensity: 0.9999
       Min Color: 0; 0; 0
@@ -81,16 +84,17 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 10
-        Min Value: -10
+        Max Value: 2.96498
+        Min Value: -0.945515
         Value: true
       Axis: Z
       Channel Name: intensity
       Class: rviz/PointCloud2
       Color: 255; 0; 0
-      Color Transformer: FlatColor
+      Color Transformer: AxisColor
       Decay Time: 0
-      Enabled: false
+      Enabled: true
+      Invert Rainbow: false
       Max Color: 255; 255; 255
       Max Intensity: 4096
       Min Color: 0; 0; 0
@@ -101,11 +105,11 @@ Visualization Manager:
       Selectable: true
       Size (Pixels): 3
       Size (m): 0.05
-      Style: Flat Squares
+      Style: Points
       Topic: /velodyne_post/point_cloud
       Use Fixed Frame: true
       Use rainbow: true
-      Value: false
+      Value: true
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
@@ -119,6 +123,7 @@ Visualization Manager:
       Color Transformer: Intensity
       Decay Time: 0
       Enabled: false
+      Invert Rainbow: false
       Max Color: 255; 255; 255
       Max Intensity: 4096
       Min Color: 0; 0; 0
@@ -139,9 +144,7 @@ Visualization Manager:
       Marker Topic: /IcpNavigation/map/graphnav/graph/out/visualization_marker_array
       Name: Pose Graph
       Namespaces:
-        /edges: true
-        /vertex_labels: true
-        /vertices: true
+        {}
       Queue Size: 100
       Value: true
     - Class: rviz/MarkerArray
@@ -149,8 +152,7 @@ Visualization Manager:
       Marker Topic: /path_tracker/visualization_marker_array
       Name: Local Path
       Namespaces:
-        /path: true
-        /vertices: true
+        {}
       Queue Size: 100
       Value: true
     - Class: rviz/MarkerArray
@@ -158,115 +160,38 @@ Visualization Manager:
       Marker Topic: /IcpNavigation/map/graphnav/out/visualization_marker_array
       Name: MarkerArray
       Namespaces:
-        /path: true
-        /vertices: true
+        {}
       Queue Size: 100
       Value: true
     - Class: rviz/TF
       Enabled: true
       Frame Timeout: 15
       Frames:
-        /base_box:
-          Value: true
-        /base_footprint:
-          Value: true
-        /base_link:
-          Value: true
-        /base_wheel_contact:
-          Value: true
-        /branch:
-          Value: true
-        /bumblebee_left:
-          Value: true
-        /bumblebee_right:
-          Value: true
-        /camera:
-          Value: true
-        /current_reference_frame:
-          Value: true
-        /gps:
-          Value: true
-        /imu:
-          Value: true
-        /inclinometer:
-          Value: true
-        /odom:
-          Value: true
-        /path:
-          Value: true
-        /path_base_link:
-          Value: true
-        /prism:
-          Value: true
-        /sick_front:
-          Value: true
-        /sick_rear:
-          Value: true
-        /stingray:
-          Value: true
-        /subgraph_base_link:
-          Value: true
-        /sun_sensor:
-          Value: true
-        /topocentric:
-          Value: true
-        /vehicle_base_link:
-          Value: true
-        /vehicle_odom:
-          Value: true
-        /velodyne:
-          Value: true
         All Enabled: true
+        base:
+          Value: true
+        camera_link:
+          Value: true
+        path:
+          Value: true
+        path_base_link:
+          Value: true
+        velodyne_link:
+          Value: true
       Marker Scale: 1
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: true
       Tree:
-        /odom:
-          /base_footprint:
-            /base_link:
-              {}
-            /base_wheel_contact:
-              /base_box:
-                /bumblebee_left:
-                  /bumblebee_right:
-                    {}
-                /gps:
-                  {}
-                /imu:
-                  {}
-                /prism:
-                  {}
-                /stingray:
-                  {}
-                /velodyne:
-                  {}
-              /sick_front:
-                {}
-              /sick_rear:
-                {}
-            /vehicle_base_link:
-              /camera:
-                /branch:
-                  {}
-                /path:
-                  /current_reference_frame:
-                    {}
-                  /path_base_link:
-                    /subgraph_base_link:
-                      {}
-                /sun_sensor:
-                  /inclinometer:
-                    {}
-              /vehicle_odom:
-                {}
+        {}
       Update Interval: 0
       Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: /topocentric
+    Fixed Frame: topocentric
+    Frame Rate: 30
   Name: root
   Tools:
     - Class: rviz/Interact
@@ -286,17 +211,22 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 84.0001
+      Distance: 12.2123
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.06
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
       Focal Point:
-        X: -18.4856
-        Y: 4.6276
-        Z: 0
+        X: 0.838595
+        Y: 1.58613
+        Z: -6.23741e-07
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 1.5298
-      Target Frame: /base_box
+      Pitch: 0.499797
+      Target Frame: base_box
       Value: XYOrbit (rviz)
-      Yaw: 3.04038
+      Yaw: 1.34719
     Saved: ~
 Window Geometry:
   Displays:
@@ -304,7 +234,7 @@ Window Geometry:
   Height: 896
   Hide Left Dock: false
   Hide Right Dock: false
-  QMainWindow State: 000000ff00000000fd00000004000000000000012d000002effc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006901000005fb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c0061007900730100000033000002ef000000d801000005fb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000010f000002effc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a005600690065007700730100000033000002ef000000ab01000005fb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000005ad0000003efc0100000002fb0000000800540069006d00650100000000000005ad0000024601000005fb0000000800540069006d006501000000000000045000000000000000000000036b000002ef00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd00000004000000000000012d000002f6fc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006400fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c0061007900730100000028000002f6000000dd00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000010f000002f6fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a005600690065007700730100000028000002f6000000b000fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000005ad0000003efc0100000002fb0000000800540069006d00650100000000000005ad000002f600fffffffb0000000800540069006d0065010000000000000450000000000000000000000365000002f600000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:
@@ -314,5 +244,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1453
-  X: 290
-  Y: 29
+  X: 1036
+  Y: 217
