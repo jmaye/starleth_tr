@@ -3,6 +3,7 @@
 <launch>
   <arg name="start_initialized" default="false"/>
   <arg name="running_offline" default="false"/>
+  <arg name="run_starleth" default="true"/>
 
   <group if="$(arg start_initialized)">
     <param name="IcpNavigation/map/pose_graph_initialization_behaviour" value="CreateNewTimestamped"/>
@@ -72,6 +73,7 @@
   </node>
 
   <!-- Velodyne data post-processing -->
-  <include file="$(find velodyne_post)/launch/velodyne32_post.launch"/>
-
+  <group unless="$(arg run_starleth)">
+    <include file="$(find velodyne_post)/launch/velodyne32_post.launch"/>
+  </group>
 </launch>

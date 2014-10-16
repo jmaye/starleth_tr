@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <launch>
-  <arg name="launch_visualizations" default="true"/>
   <arg name="start_initialized" default="false"/>
   <arg name="running_offline" default="false"/>
+  <arg name="run_starleth" default="true"/>
 
   <!-- ===================================================== -->
   <!-- This is the core ICP Navigation server software: -->
@@ -10,16 +10,8 @@
   <include file="$(find starleth_tr)/launch/icp_navigation.launch">
     <arg name="start_initialized" value="$(arg start_initialized)"/>
     <arg name="running_offline" value="$(arg running_offline)"/>
+    <arg name="run_starleth" value="$(arg run_starleth)"/>
   </include>
-
-  <!-- The path massager that takes paths emitted by ICP Navigation and sends them to the path tracker -->
-  <!-- T<node pkg="asrl_graph_navigation" type="following_path_massager" name="path_massager">
-    <remap from="~in/path" to="/IcpNavigation/map/graphnav/out/following_path"/>
-  </node> -->
-
-  <!-- The graph following safety layer that listens for failures and
-       stops ICP Navigation if it is unable to localize -->
-  <!-- <include file="$(find starleth_tr)/launch/graph_following_safety.launch"/> -->
 
   <!-- The path tracker -->
   <include file="$(find local_planning_ros)/launch/local_planner_starleth.launch"/>
@@ -35,28 +27,11 @@
     <param name="map_cell_size" value="0.1" />
   </node>
   
-
   <!-- ===================================================== -->
   <!-- ==============  Optional Components  ================ --> 
 
-  <!-- Launch the robot and gamepad -->
-<!--  <group if="$(arg launch_robot)">  -->
-<!--    <include file="$(find mesr_launch)/launch/robot.launch" >-->
-<!--      <arg name="gamepad_device" value="$(arg gamepad_device)"/>-->
-<!--      <arg name="linear_to_angular_ratio" default="$(arg linear_to_angular_ratio)"/>-->
-<!--    </include>-->
-<!--  </group>-->
-
-  <!-- Launch the camera -->
-<!--  <group if="$(arg launch_camera)">-->
-<!--    <include file="$(find mesr_launch)/launch/camera.launch">-->
-<!--      <arg name="use_utias_camera" value="$(arg use_utias_camera)"/>    -->
-<!--    </include>-->
-<!--  </group>-->
-
   <!-- Launch the visualizations -->
-  <group if="$(arg launch_visualizations)">
+  <group unless="$(arg run_starleth)">
     <include file="$(find starleth_tr)/launch/visualizations.launch"/>
   </group>
-
 </launch>
