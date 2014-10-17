@@ -22,10 +22,7 @@
   </node>
 
   <!-- publish a test map -->
-  <node pkg="local_planning_ros" type="test_map_publisher" name="test_map_publisher" output="screen" respawn="false">
-    <param name="vehicle_frame_id" value="base" />
-    <param name="map_cell_size" value="0.1" />
-  </node>
+  <include file="$(find local_planning_ros)/launch/test_map_publisher.launch"/>
   
   <!-- ===================================================== -->
   <!-- ==============  Optional Components  ================ --> 
