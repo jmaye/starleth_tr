@@ -3,7 +3,10 @@ Panels:
     Help Height: 78
     Name: Displays
     Property Tree Widget:
-      Expanded: ~
+      Expanded:
+        - /Global Options1
+        - /MarkerArray3
+        - /MarkerArray4
       Splitter Ratio: 0.519031
     Tree Height: 775
   - Class: rviz/Selection
@@ -78,8 +81,8 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 2.7438
-        Min Value: -1.6547
+        Max Value: 2.69033
+        Min Value: -0.861973
         Value: true
       Axis: Z
       Channel Name: intensity
@@ -202,8 +205,6 @@ Visualization Manager:
           Value: true
         camera_link:
           Value: true
-        current_reference_frame:
-          Value: true
         path:
           Value: true
         path_base_link:
@@ -250,12 +251,9 @@ Visualization Manager:
               branch:
                 {}
               path:
-                current_reference_frame:
-                  {}
                 path_base_link:
                   subgraph_base_link:
-                    topocentric:
-                      {}
+                    {}
       Update Interval: 0
       Value: true
     - Alpha: 0.7
@@ -271,7 +269,23 @@ Visualization Manager:
       Marker Topic: /visualization_local_trajectories
       Name: MarkerArray
       Namespaces:
-        local_trajectories: true
+        {}
+      Queue Size: 100
+      Value: true
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /visualization_local_trajectories
+      Name: MarkerArray
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: true
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /visualization_reference_path
+      Name: MarkerArray
+      Namespaces:
+        {}
       Queue Size: 100
       Value: true
   Enabled: true
@@ -298,22 +312,22 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 14.6271
+      Distance: 11.3272
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.838595
-        Y: 1.58613
-        Z: -6.23741e-07
+        X: 2.73475
+        Y: -0.962188
+        Z: 3.29933e-07
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.494797
+      Pitch: 0.689797
       Target Frame: base_box
       Value: XYOrbit (rviz)
-      Yaw: 1.12219
+      Yaw: 0.24719
     Saved: ~
 Window Geometry:
   Displays:
@@ -331,5 +345,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1855
-  X: 65
-  Y: 24
+  X: 695
+  Y: 219
