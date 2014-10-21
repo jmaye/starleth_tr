@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+  <arg name="start_initialized" default="false"/>
+  <arg name="running_offline" default="false"/>
+  <arg name="run_starleth" default="true"/>
+
+  <!-- ===================================================== -->
+  <!-- This is the core ICP Navigation server software: -->
+  <!-- ICP Navigation -->
+  <include file="$(find starleth_tr)/launch/icp_navigation.launch">
+    <arg name="start_initialized" value="$(arg start_initialized)"/>
+    <arg name="running_offline" value="$(arg running_offline)"/>
+    <arg name="run_starleth" value="$(arg run_starleth)"/>
+  </include>
+
+  <!-- The path tracker -->
+
+  <!-- transforms the reference path provided by the ICP T&R to a standard nav_msgs::Path -->
+<!--  <node pkg="teach_repeat_launch" type="global_path_transformer" name="reference_path_transformer" respawn="true">
+    <remap from="tnr_reference_path" to="/IcpNavigation/map/graphnav/out/following_path"/>
+  </node>
+-->
+  <!-- publish a test map -->
+  <include file="$(find local_planning_ros)/launch/test_map_publisher.launch"/>
+  
+  <!-- ===================================================== -->
+  <!-- ==============  Optional Components  ================ --> 
+
+  <!-- Launch the visualizations -->
+  <group unless="$(arg run_starleth)">
+    <include file="$(find starleth_tr)/launch/visualizations.launch"/>
+  </group>
+</launch>
