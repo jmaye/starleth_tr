@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+  <include file="$(find robot_pose_controller)/launch/robot_pose_controller.launch"/>
+</launch>

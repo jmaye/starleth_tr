@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+<!--
+  <arg name="pose_graph" default="/home/starleth/data/pose_graphs/first/"/>
+  <arg name="pose_graph_start_node" default="1"/>
+  <arg name="pose_graph_end_node" default="50"/>
+  <rosparam command="load" file="$(find asrl_pose_graph)/cfg/path_controller_parameters.yaml" />
+  <node pkg="asrl_pose_graph" type="PathController" name="path_controller" respawn="true" cwd="node" args="$(arg pose_graph) $(arg pose_graph_start_node) $(arg pose_graph_end_node)">
+  </node>
+-->
+  <rosparam command="load" file="$(find asrl_pose_graph)/cfg/path_controller_parameters.yaml"/>
+  <node pkg="starleth_tr" type="path_controller_launch.sh" name="path_controller" output="screen">
+  </node>
+</launch>

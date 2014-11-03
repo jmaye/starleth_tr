@@ -3,10 +3,7 @@
   <arg name="start_initialized" default="false"/>
   <arg name="running_offline" default="false"/>
   <arg name="run_starleth" default="true"/>
-  <arg name="pose_graph" default="/home/starleth/data/pose_graphs/firstRun/"/>
-  <arg name="pose_graph_start_node" default="1"/>
-  <arg name="pose_graph_end_node" default="88"/>
-  
+
   <!-- ===================================================== -->
   <!-- This is the core ICP Navigation server software: -->
   <!-- ICP Navigation -->
@@ -16,6 +13,15 @@
     <arg name="run_starleth" value="$(arg run_starleth)"/>
   </include>
 
+  <!-- The path tracker -->
+  <rosparam command="load" file="$(find asrl_pose_graph)/cfg/path_controller_parameters.yaml" />
+<!--  <node pkg="asrl_pose_graph" type="PathController" name="path_controller" respawn="true" cwd="node" args="/home/starleth/data/pose_graphs/first/ 1 50">
+  </node>-->
+  <!-- transforms the reference path provided by the ICP T&R to a standard nav_msgs::Path -->
+<!--  <node pkg="teach_repeat_launch" type="global_path_transformer" name="reference_path_transformer" respawn="true">
+    <remap from="tnr_reference_path" to="/IcpNavigation/map/graphnav/out/following_path"/>
+  </node>
+-->
   <!-- publish a test map -->
   <include file="$(find local_planning_ros)/launch/test_map_publisher.launch"/>
   
@@ -26,14 +32,4 @@
   <group unless="$(arg run_starleth)">
     <include file="$(find starleth_tr)/launch/visualizations.launch"/>
   </group>
-
- 
- <!-- <node pkg="icp_interface" type="loadExistingPoseGraph" name="load_pose_graph" args="/home/starleth/data/pose_graphs/first/" output="screen">
-  </node>-->
-  
-     <!--
- <node pkg="starleth_tr" type="transit_to_node.sh" name="transit_to_node" args="$(arg pose_graph) $(arg pose_graph_start_node) $(arg pose_graph_end_node) 10" output="screen">
-  </node>    
-    -->
-
 </launch>

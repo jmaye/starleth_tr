@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+  <arg name="pose_graph" default="/home/starleth/data/pose_graphs/first/"/>
+  <arg name="pose_graph_start_node" default="1"/>
+  <arg name="pose_graph_end_node" default="50"/>
+  <include file="$(find starleth_tr)/launch/tr_server_icp_localization_only.launch">
+  <arg name="pose_graph" value="$(arg pose_graph)"/>
+      <arg name="pose_graph_start_node" value="$(arg pose_graph_start_node)"/>
+      <arg name="pose_graph_end_node" value="$(arg pose_graph_end_node)"/>
+  </include>
+  <!--
+  <include file="$(find starleth_tr)/launch/path_controller.launch">
+      <arg name="pose_graph" value="$(arg pose_graph)"/>
+      <arg name="pose_graph_start_node" value="$(arg pose_graph_start_node)"/>
+      <arg name="pose_graph_end_node" value="$(arg pose_graph_end_node)"/>
+  </include>
+  
+  <include file="$(find starleth_tr)/launch/marker.launch">
+  </include>
+  -->
+</launch>
